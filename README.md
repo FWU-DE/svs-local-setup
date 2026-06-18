@@ -9,3 +9,4 @@ Scripts for a local deployment of the [SchulCloud](https://github.com/hpi-schul-
 3. `scripts/03-start-mongodb.sh` — start MongoDB via Docker
 4. `scripts/04-start-rabbitmq.sh` — start RabbitMQ via Docker
 5. `scripts/05-seed-mongodb.sh` — seed the MongoDB by running `npm run setup:db:seed` in `schulcloud-server`
+6. `scripts/06-start-backend.sh` — start the backend with `npm run nest:start:dev` in `schulcloud-server`
