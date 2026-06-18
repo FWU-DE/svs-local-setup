@@ -13,3 +13,10 @@ Scripts for a local deployment of the [SchulCloud](https://github.com/hpi-schul-
 7. `scripts/07-install-nodemon.sh` — install `nodemon` globally for the legacy client
 8. `scripts/08-build-and-watch-schulcloud-client.sh` — run `npm run build` and then `npm run watch` in `schulcloud-client`
 9. `scripts/09-serve-nuxt-client.sh` — run `npm run serve` in `nuxt-client`
+
+After all steps you access the SchulCloud via
+
+- http://localhost:3030/ - main backend
+  - for example http://localhost:3030/api/v3/docs shows the swagger of the `/api/v3/` endpoints
+- http://localhost:3100/ - legacy client
+- http://localhost:4000/ - vue client (repo `nuxt-client`)
