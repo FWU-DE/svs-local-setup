@@ -11,3 +11,4 @@ Scripts for a local deployment of the [SchulCloud](https://github.com/hpi-schul-
 5. `scripts/05-seed-mongodb.sh` — seed the MongoDB by running `npm run setup:db:seed` in `schulcloud-server`
 6. `scripts/06-start-backend.sh` — start the backend with `npm run nest:start:dev` in `schulcloud-server`
 7. `scripts/07-install-nodemon.sh` — install `nodemon` globally for the legacy client
+8. `scripts/08-build-and-watch-schulcloud-client.sh` — run `npm run build` and then `npm run watch` in `schulcloud-client`
