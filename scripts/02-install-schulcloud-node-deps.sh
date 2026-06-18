@@ -4,13 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REPOS_DIR="$ROOT_DIR/repos"
 
-repos=(
-  "schulcloud-server"
-  "nuxt-client"
-  "schulcloud-client"
-)
-
-for name in "${repos[@]}"; do
+for name in $(ls "$REPOS_DIR"); do
   target="$REPOS_DIR/$name"
 
   if [[ ! -d "$target/.git" ]]; then
