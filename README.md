@@ -1,6 +1,6 @@
 # Local SchulCloud Setup
 
-Scripts for a local deployment of the [SchulCloud](https://github.com/hpi-schul-cloud/schulcloud-server).
+Scripts for a local deployment of the [SchulCloud](https://github.com/hpi-schul-cloud/schulcloud-server). See https://documentation.dbildungscloud.dev/docs/getting-started for more information.
 
 ## Steps for a local setup
 
