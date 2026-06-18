@@ -12,12 +12,14 @@ if docker ps -a --format '{{.Names}}' | grep -Fx "$CONTAINER_NAME" >/dev/null 2>
 		exit 0
 	fi
 
-	docker rm -f "$CONTAINER_NAME" >/dev/null
+	docker start "$CONTAINER_NAME" >/dev/null
+	echo "MongoDB restarted in container '$CONTAINER_NAME' on port $PORT"
+	exit 0
 fi
 
-docker run \
+docker run -d \
 	--name "$CONTAINER_NAME" \
 	-p "$PORT:27017" \
-	"$IMAGE"
+	"$IMAGE" >/dev/null
 
 echo "MongoDB started in container '$CONTAINER_NAME' on port $PORT using image '$IMAGE'"
