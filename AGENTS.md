@@ -15,6 +15,14 @@ Work in this repository should focus on the local SchulCloud setup only:
 
 The `scripts/` directory should contain the commands developers use for the local setup.
 
+Script file names must be prefixed with a two-digit number so the execution order is clear:
+
+```text
+scripts/01-check-prerequisites.sh
+scripts/02-prepare-configuration.sh
+...
+```
+
 When adding or changing scripts, make sure each script has a clear purpose and is documented in the README.
 
 ## README Requirements
@@ -26,7 +34,7 @@ It should include:
 - required tools and versions
 - initial setup steps
 - the command sequence for a fresh local setup
-- a list of scripts in `scripts/` with their purpose
+- a list of numbered scripts in `scripts/` with their purpose and execution order
 - required environment variables or local configuration files
 - start, stop, reset, and cleanup instructions
 - troubleshooting for known local setup problems
