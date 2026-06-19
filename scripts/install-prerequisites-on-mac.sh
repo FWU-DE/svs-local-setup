@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
-# Checks that all prerequisites for running the schulcloud local setup on macOS
-# are installed, and installs missing ones where possible via Homebrew.
 set -euo pipefail
 
-# ---------------------------------------------------------------------------
-# Homebrew — everything else depends on this
-# ---------------------------------------------------------------------------
 if ! command -v brew >/dev/null 2>&1; then
   echo "INFO: Installing Homebrew..." >&2
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -13,9 +8,6 @@ else
   echo "INFO: Homebrew already installed ($(brew --version | head -1))" >&2
 fi
 
-# ---------------------------------------------------------------------------
-# Git
-# ---------------------------------------------------------------------------
 if ! command -v git >/dev/null 2>&1; then
   echo "INFO: Installing git via Homebrew..." >&2
   brew install git
@@ -23,9 +15,6 @@ else
   echo "INFO: git already installed ($(git --version))" >&2
 fi
 
-# ---------------------------------------------------------------------------
-# Node.js
-# ---------------------------------------------------------------------------
 if ! command -v node >/dev/null 2>&1; then
   echo "INFO: Installing node via Homebrew..." >&2
   brew install node
@@ -33,9 +22,6 @@ else
   echo "INFO: node already installed ($(node --version))" >&2
 fi
 
-# ---------------------------------------------------------------------------
-# Docker (Docker Desktop cask)
-# ---------------------------------------------------------------------------
 if ! command -v docker >/dev/null 2>&1; then
   echo "INFO: Installing Docker Desktop via Homebrew..." >&2
   brew install --cask docker
