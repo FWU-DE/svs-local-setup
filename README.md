@@ -14,6 +14,44 @@ Scripts for a local deployment of the [SchulCloud](https://github.com/hpi-schul-
 8. `scripts/08-build-and-watch-schulcloud-client.sh` — run `npm run build` and then `npm run watch` in `schulcloud-client`
 9. `scripts/09-serve-nuxt-client.sh` — run `npm run serve` in `nuxt-client`
 
+```mermaid
+flowchart TD
+    subgraph "1. Initial Setup"
+        A["**01** · Sync Repositories\n<small>git clone / pull</small>"]
+        B["**02** · Install Dependencies\n<small>npm ci</small>"]
+        A --> B
+    end
+
+    subgraph "2. Start Services & Tools"
+        direction LR
+        subgraph "Infrastructure (Docker)"
+            C["**03** · Start MongoDB"]
+            D["**04** · Start RabbitMQ"]
+        end
+        subgraph "Global Tools"
+            G["**07** · Install Nodemon\n<small>npm i -g nodemon</small>"]
+        end
+    end
+
+    B --> C & D & G
+
+    subgraph "3. Prepare & Run Backend"
+        E["**05** · Seed MongoDB\n<small>npm run setup:db:seed</small>"]
+        F["**06** · Start Backend\n<small>npm run nest:start:dev</small>"]
+        C --> E --> F
+        D --> F
+    end
+
+    subgraph "4. Run Frontend Clients"
+        direction LR
+        H["**08** · Legacy Client\n<small>npm run build + watch</small>"]
+        I["**09** · Nuxt Client\n<small>npm run serve</small>"]
+    end
+
+    G --> H
+    F --> H & I
+```
+
 After all steps you access the SchulCloud via
 
 - http://localhost:3030/ - main backend

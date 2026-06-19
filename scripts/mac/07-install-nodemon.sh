@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "ERROR: Homebrew is not installed." >&2
+  echo "       Install via: https://brew.sh" >&2
+  exit 1
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "ERROR: Node.js is not installed." >&2
+  echo "       Install via: brew install node" >&2
+  exit 1
+fi
+
+echo "INFO: Installing nodemon globally..." >&2
+npm i -g nodemon
