@@ -74,7 +74,12 @@ flowchart TD
 
 After all steps you access the SchulCloud via
 
-- http://localhost:3030/ - main backend
-  - for example http://localhost:3030/api/v3/docs shows the swagger of the `/api/v3/` endpoints
+- http://localhost:3000/ - backend
+  - note: opening the backend root URL shows a `Page Not Found` response
+  - for example http://localhost:3000/api/v3/docs shows the swagger of the `/api/v3/` endpoints
 - http://localhost:3100/ - legacy client
+  - note: the default view shows an error until you log in
 - http://localhost:4000/ - vue client (repo `nuxt-client`)
+  - note: the default view shows an error until you log in
+
+Use one of the demo accounts from https://github.com/hpi-schul-cloud/schulcloud-server/blob/main/backup/setup/accounts.json to sign in.
