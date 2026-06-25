@@ -29,9 +29,8 @@ Each step is idempotent — running the script again when a tool is already inst
 4. `scripts/04-start-rabbitmq.sh` — start RabbitMQ via Docker (idempotent: restarts existing container or creates a new one)
 5. `scripts/05-seed-mongodb.sh` — seed the MongoDB by running `npm run setup:db:seed` in `schulcloud-server` (skips if already seeded)
 6. `scripts/06-start-backend.sh` — start the backend with `npm run nest:start:dev` in `schulcloud-server`
-7. `scripts/07-install-nodemon.sh` — install `nodemon` globally for the legacy client
-8. `scripts/08-build-and-watch-schulcloud-client.sh` — run `npm run build` and then `npm run watch` in `schulcloud-client`
-9. `scripts/09-serve-nuxt-client.sh` — run `npm run serve` in `nuxt-client`
+7. `scripts/07-build-and-watch-schulcloud-client.sh` — run `npm run build` and then `npm run watch` in `schulcloud-client`
+8. `scripts/08-serve-nuxt-client.sh` — run `npm run serve` in `nuxt-client`
 
 ```mermaid
 flowchart TD
@@ -53,12 +52,9 @@ flowchart TD
             C["**03** · Start MongoDB"]
             D["**04** · Start RabbitMQ"]
         end
-        subgraph "Global Tools"
-            G["**07** · Install Nodemon\n<small>npm i -g nodemon</small>"]
-        end
     end
 
-    B --> C & D & G
+    B --> C & D
 
     subgraph "3. Prepare & Run Backend"
         E["**05** · Seed MongoDB\n<small>npm run setup:db:seed</small>"]
@@ -69,11 +65,10 @@ flowchart TD
 
     subgraph "4. Run Frontend Clients"
         direction LR
-        H["**08** · Legacy Client\n<small>npm run build + watch</small>"]
-        I["**09** · Nuxt Client\n<small>npm run serve</small>"]
+        H["**07** · Legacy Client\n<small>npm run build + watch</small>"]
+        I["**08** · Nuxt Client\n<small>npm run serve</small>"]
     end
 
-    G --> H
     F --> H & I
 ```
 
