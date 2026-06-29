@@ -88,3 +88,34 @@ Use one of the demo accounts from https://github.com/hpi-schul-cloud/schulcloud-
 
 - `scripts/helper/install-prerequisites-on-mac.sh` — install required macOS tools before running the setup steps
 - `scripts/helper/connect-mongodb.sh` — open an interactive `mongosh` shell in the MongoDB container started by `scripts/steps/03-start-mongodb.sh`
+
+## Existing local workspace
+
+If you already have the FWU repositories checked out under `~/code/svs`, start the full local stack without cloning into this repository's `repos/` directory:
+
+```bash
+scripts/09-start-existing-svs-workspace.sh
+```
+
+The script expects these repositories by default:
+
+- `~/code/svs/schulcloud-server`
+- `~/code/svs/nuxt-client`
+- `~/code/svs/file-storage`
+
+Override the workspace path with `SVS_WORKSPACE_DIR=/path/to/svs`. Set `SVS_SKIP_SEED=true` to skip `npm run setup:db:seed` and local file fixture seeding on subsequent starts.
+
+It starts MongoDB, RabbitMQ, Redis, MinIO, the optional local calendar server (`~/code/svs/calendar-server/server.mjs`), the backend, file-storage service, and Nuxt client. Logs and process IDs are written to `~/code/svs/.runtime/`.
+
+The normal seed path also creates a small local file fixture set so the file APIs and apps have deterministic data:
+
+- MongoDB `filerecords` for one personal file and one course file
+- matching objects in the MinIO `schulcloud` bucket
+
+Useful overrides:
+
+- `SVS_SEED_FILES=false` skips local file fixture seeding.
+- `SVS_START_CALENDAR=false` skips the optional local calendar server.
+- `SVS_START_LEGACY_CLIENT=false` skips the optional legacy client used for not-yet-native `/files/*` routes.
+- `SVS_SKIP_LEGACY_BUILD=true` skips building legacy client assets when `build/default` is missing.
+- `SVS_MINIO_BUCKET`, `SVS_MINIO_ROOT_USER`, `SVS_MINIO_ROOT_PASSWORD`, and `SVS_MINIO_ENDPOINT_FOR_CONTAINER` override the local MinIO seed target.
