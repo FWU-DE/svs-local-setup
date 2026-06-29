@@ -83,3 +83,8 @@ After all steps you access the SchulCloud via
   - note: the default view shows an error until you log in
 
 Use one of the demo accounts from https://github.com/hpi-schul-cloud/schulcloud-server/blob/main/backup/setup/accounts.json to sign in.
+
+## Helper scripts
+
+- `scripts/helper/install-prerequisites-on-mac.sh` — install required macOS tools before running the setup steps
+- `scripts/helper/connect-mongodb.sh` — open an interactive `mongosh` shell in the MongoDB container started by `scripts/steps/03-start-mongodb.sh`
