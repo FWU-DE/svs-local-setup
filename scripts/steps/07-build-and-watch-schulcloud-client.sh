@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-CLIENT_DIR="$ROOT_DIR/repos/schulcloud-client"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../helper/local-config.sh"
 
 if [[ ! -d "$CLIENT_DIR/.git" ]]; then
   echo "ERROR: $CLIENT_DIR is missing or not a git repository" >&2
