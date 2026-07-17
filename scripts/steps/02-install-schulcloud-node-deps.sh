@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-REPOS_DIR="$ROOT_DIR/repos"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../helper/local-config.sh"
 
-for name in $(ls "$REPOS_DIR"); do
-  target="$REPOS_DIR/$name"
+for target in "$SERVER_DIR" "$CLIENT_DIR" "$NUXT_CLIENT_DIR"; do
+  name="$(basename "$target")"
 
   if [[ ! -d "$target/.git" ]]; then
     echo "ERROR: $target is missing or not a git repository" >&2

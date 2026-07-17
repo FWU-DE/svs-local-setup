@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-REPOS_DIR="$ROOT_DIR/repos"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../helper/local-config.sh"
 
 mkdir -p "$REPOS_DIR"
 
 repos=(
   "schulcloud-server https://github.com/hpi-schul-cloud/schulcloud-server"
-  "nuxt-client https://github.com/hpi-schul-cloud/nuxt-client"
   "schulcloud-client https://github.com/hpi-schul-cloud/schulcloud-client"
+  "nuxt-client https://github.com/hpi-schul-cloud/nuxt-client"
 )
 
 for entry in "${repos[@]}"; do

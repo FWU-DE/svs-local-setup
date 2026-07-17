@@ -21,9 +21,21 @@ The script installs each tool only if it is not already present:
 
 Each step is idempotent — running the script again when a tool is already installed prints an info line and skips the install.
 
+## Configuring the repos directory
+
+By default, the SchulCloud repos are cloned into `repos/`.
+
+To use a different location per user, create a local `.env.local` file in the project root or set `SCHULCLOUD_REPOS_DIR` in your shell:
+
+```bash
+SCHULCLOUD_REPOS_DIR="$HOME/dev/schulcloud-repos"
+```
+
+A shell-level `SCHULCLOUD_REPOS_DIR` takes precedence over `.env.local`.
+
 ## Steps for a local setup
 
-1. `scripts/steps/01-sync-schulcloud-repos.sh` — sync `schulcloud-server`, `nuxt-client`, and `schulcloud-client` into `repos/`
+1. `scripts/steps/01-sync-schulcloud-repos.sh` — sync `schulcloud-server`, `schulcloud-client`, and `nuxt-client` into the configured repos directory (defaults to `repos/`)
 2. `scripts/steps/02-install-schulcloud-node-deps.sh` — run `npm ci` in each repo
 3. `scripts/steps/03-start-mongodb.sh` — start MongoDB via Docker (idempotent: restarts existing container or creates a new one)
 4. `scripts/steps/04-start-rabbitmq.sh` — start RabbitMQ via Docker (idempotent: restarts existing container or creates a new one)
@@ -86,5 +98,6 @@ Use one of the demo accounts from https://github.com/hpi-schul-cloud/schulcloud-
 
 ## Helper scripts
 
+- `scripts/helper/local-config.sh` — load `.env.local` and resolve the repos directory used by the setup scripts
 - `scripts/helper/install-prerequisites-on-mac.sh` — install required macOS tools before running the setup steps
 - `scripts/helper/connect-mongodb.sh` — open an interactive `mongosh` shell in the MongoDB container started by `scripts/steps/03-start-mongodb.sh`
